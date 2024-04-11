@@ -1,0 +1,5 @@
+[[dependency]]
+packages = [
+    "pythonnet==3.0.3",             # SWIPAT filed under: http://nvbugs/123456
+]
+target = "../_build/target-deps/pip_prebundle"

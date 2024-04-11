@@ -1,5 +1,9 @@
+-- Include pip packages installed at build time
+
+
 -- Shared build scripts from repo_build package.
 repo_build = require("omni/repo/build")
+
 
 -- Repo root
 root = repo_build.get_abs_path(".")
@@ -11,6 +15,8 @@ dofile("_repo/deps/repo_kit_tools/kit-template/premake5.lua")
 repo_build.prebuild_copy {
     { "%{root}/tools/deps/user.toml", "%{root}/_build/deps/user.toml" },
 }
+
+
 
 -- Apps: for each app generate batch files and a project based on kit files (e.g. my_name.my_app.kit)
 define_app("omni.usd_explorer")
