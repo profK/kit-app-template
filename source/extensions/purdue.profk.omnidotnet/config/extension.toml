@@ -6,8 +6,8 @@ version = "0.1.0"
 authors = [""]
 
 # The title and description fields are primarly for displaying extension info in UI
-title = "Python Extension Example"
-description="The simplest python extension example. Use it as a starting point for your extensions."
+title = "OmniDotNet"
+description="DotNet for Omniverse."
 
 # Path (relative to the root) or content of readme markdown file for UI.
 readme  = "docs/README.md"
@@ -19,7 +19,7 @@ repository=""
 category = "Example"
 
 # Keywords for the extension
-keywords = ["kit", "example"]
+keywords = ["kit", "dotnet"]
 
 # Location of change log file in target (final) folder of extension, relative to the root.
 # More info on writing changelog: https://keepachangelog.com/en/1.0.0/
@@ -38,6 +38,40 @@ icon = "data/icon.png"
 # Main python module this extension provides, it will be publicly available as "import omni.example.hello".
 [[python.module]]
 name = "purdue.profk.omnidotnet"
+
+# Demonstrate how to add another folder to sys.path. Here we add pip packages installed at build time.
+[[python.module]]
+path = "pip_prebundle"
+
+[python.pipapi]
+# List of additional directories with pip achives to be passed into pip using ``--find-links`` arg.
+# Relative paths are relative to extension root. Tokens can be used.
+archiveDirs = ["path/to/pip_archive"]
+
+# Commands passed to pip install before extension gets enabled. Can also contain flags, like `--upgrade`, `--no--index`, etc.
+# Refer to: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+requirements = [
+    "pythonnet==3.0.3",
+]
+
+# Optional list of modules to import before (check) and after pip install if different from packages in requirements.
+modules = [
+    "pythonnet",
+    "clr"
+]
+
+# Allow going to online index. Required to be set to true for pip install call.
+use_online_index = true
+
+# Ignore import check for modules.
+ignore_import_check = false
+
+# Use this to specify a list of additional repositories if your pip package is hosted somewhere other
+# than the default repo(s) configured in pip. Will pass these to pip with "--extra-index-url" argument
+#repositories = ["https://my.additional.pip_repo.com/"]
+
+# Other arguments to pass to pip install. For example, to disable caching:
+extra_args = ["--no-cache-dir"]
 
 [documentation]
 pages = [
